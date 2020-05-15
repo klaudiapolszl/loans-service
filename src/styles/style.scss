@@ -1,0 +1,187 @@
+$color-blue: #14c9e6;
+$color-pink: #ff3860;
+$color-white: #fff;
+$color-black: #000;
+$color-navy: #131e56;
+$color-grey: #d8d8d8;
+$color-light-grey: #f4f7fc;
+$color-red-transparent: rgba(241, 70, 104, 0.66);
+$color-black-transparent: rgba(241, 70, 104, 0.66);
+
+@mixin fit-content {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+@mixin transition-duration {
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+
+@mixin box-shadow() {
+  -webkit-box-shadow: 0 0 20px rgba($color-black, 0.12);
+  -moz-box-shadow: 0 0 20px rgba($color-black, 0.12);
+  -ms-box-shadow: 0 0 20px rgba($color-black, 0.12);
+  -o-box-shadow: 0 0 20px rgba($color-black, 0.12);
+  box-shadow: 0 0 20px rgba($color-black, 0.12);
+}
+
+html {
+  background-color: $color-light-grey;
+}
+.wrapper {
+  max-width: 60%;
+  margin: 60px auto auto auto;
+  .box {
+    margin-top: 18%;
+    .buttons-wrapper {
+      margin: 0 auto;
+      @include fit-content;
+    }
+  }
+}
+.dashboard__top-menu {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  background-color: $color-white;
+  @include box-shadow;
+  .dashboard__email {
+    margin-top: 8px 10px auto auto;
+  }
+}
+.clients {
+  display: block;
+  .card  {
+    @include box-shadow;
+    max-width: 80%;
+    margin: 41px auto auto auto;
+    padding-bottom: 21px;
+    .search__field {
+      background-color: $color-navy;
+      padding: 10px;
+      .search__control {
+        width: 250px;
+        display: inline-block;
+        .input  {
+          vertical-align: top;
+        }
+      }
+      .search__label {
+        color: $color-white;
+      }
+      .search__buttons {
+        display: inline-block;
+      }
+      .search__button {
+        margin-left: 10px;
+        &:hover {
+          border: 2px solid $color-blue;
+          background-color: $color-navy;
+          transition-duration: 0.5s;
+          color: $color-white;
+        }
+      }
+    }
+    .table-wrapper {
+      overflow-x: auto;
+    }
+  }
+}
+.modal.is-block {
+  display: block;
+  .modal-background {
+    background-color: $color-red-transparent;
+  }
+  .box {
+    margin-top: 18%;
+    .modal__title {
+      font-size: 26px;
+      text-align: center;
+      margin-bottom: 33px;
+    }
+  }
+  .modal-card {
+    margin: 20px auto;
+    .modal-card-head  {
+      justify-content: center;
+      .modal-edit__title {
+        font-size: 26px;
+      }
+    }
+  }
+}
+.is-large.delete, .is-large.modal-close {
+  height: 50px;
+  max-height: none;
+  max-width: none;
+  min-height: none;
+  min-width: none;
+  width: 50px;
+}
+.modal__buttons {
+  @include fit-content;
+  margin: 0 auto;
+}
+.page-not-found__title{
+  text-align: center;
+  font-size: 33px;
+}
+.button {
+  outline: none;
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  -ms-border-radius: 23px;
+  -o-border-radius: 23px;
+  padding: 6px 25px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.button--back {
+  border: 2px solid $color-navy;
+  background-color: $color-white;
+  color: $color-black;
+  &:hover {
+    @include transition-duration;
+    border: 2px solid $color-grey;
+  }
+}
+.button--navy {
+  background-color: $color-navy;
+  color: $color-white;
+  border: 2px solid $color-navy;
+  &:hover  {
+    border: 2px solid $color-navy;
+    background-color: $color-white;
+    @include transition-duration;
+    color: $color-black;
+  }
+}
+.button--pink {
+  background-color: $color-pink;
+  color: $color-white;
+  border: 2px solid $color-pink;
+  &:hover  {
+    border: 2px solid $color-pink;
+    background-color: $color-white;
+    color: $color-black;
+    @include transition-duration;
+  }
+}
+.button--blue {
+  background-color: $color-blue;
+  color: $color-white;
+  border: 2px solid $color-blue;
+  &:hover  {
+    border: 2px solid $color-blue;
+    background-color: $color-white;
+    @include transition-duration;
+    color: $color-black;
+  }
+}
