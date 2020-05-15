@@ -7,6 +7,7 @@ $color-grey: #d8d8d8;
 $color-light-grey: #f4f7fc;
 $color-red-transparent: rgba(241, 70, 104, 0.66);
 $color-black-transparent: rgba(241, 70, 104, 0.66);
+$color-blue-transparent: rgba(70, 154, 241, 0.66);
 
 @mixin fit-content {
   width: -webkit-fit-content;
@@ -56,7 +57,7 @@ html {
 }
 .clients {
   display: block;
-  .card  {
+  .card {
     @include box-shadow;
     max-width: 80%;
     margin: 41px auto auto auto;
@@ -67,7 +68,7 @@ html {
       .search__control {
         width: 250px;
         display: inline-block;
-        .input  {
+        .input {
           vertical-align: top;
         }
       }
@@ -94,8 +95,11 @@ html {
 }
 .modal.is-block {
   display: block;
-  .modal-background {
+  .modal-background--delete {
     background-color: $color-red-transparent;
+  }
+  .modal-background--edit {
+    background-color: $color-blue-transparent;
   }
   .box {
     margin-top: 18%;
@@ -127,7 +131,7 @@ html {
   @include fit-content;
   margin: 0 auto;
 }
-.page-not-found__title{
+.page-not-found__title {
   text-align: center;
   font-size: 33px;
 }
@@ -178,7 +182,7 @@ html {
   background-color: $color-blue;
   color: $color-white;
   border: 2px solid $color-blue;
-  &:hover  {
+  &:hover {
     border: 2px solid $color-blue;
     background-color: $color-white;
     @include transition-duration;

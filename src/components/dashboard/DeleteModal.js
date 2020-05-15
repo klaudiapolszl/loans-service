@@ -22,7 +22,7 @@ class DeleteModal extends React.Component {
   render(){
     return (
       <div className="modal is-block">
-        <div className="modal-background"></div>
+        <div className="modal-background modal-background--delete"></div>
         <div className="modal-content">
           <div className="box">
               <p className="modal__title">Confirm the removal of the client: { this.props.name }</p>

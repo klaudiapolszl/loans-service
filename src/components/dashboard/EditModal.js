@@ -27,7 +27,7 @@ handleEditModalClose() {
 render(){
   return (
     <div className="modal is-block">
-      <div className="modal-background"></div>
+      <div className="modal-background modal-background--edit"></div>
       <div className="modal-card">
         <header className="modal-card-head">
           <p className="modal-edit__title">Edit information about the client</p>
