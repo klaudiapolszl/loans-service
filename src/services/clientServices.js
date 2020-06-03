@@ -1,7 +1,7 @@
 import { firestore } from "../components/Firebase.js"
 
-export function getClients() {
-  return function(dispatch) {
+export const getClients = () => {
+  return (dispatch) => {
     const creatorsCollection = firestore.collection("clients")
     const documentsCollection = doc => {
       return { id: doc.id, ...doc.data() }
@@ -13,46 +13,79 @@ export function getClients() {
     return () => subscribe
   }
 }
-export function deleteClient(id,index) {
-  return function(dispatch) {
+
+export const selectedClientToDelete = (id,index) => {
+  return (dispatch) => {
     dispatch({ type: "SET_DELETE_MODAL", deleteModal: true })
     dispatch({ type: "SET_CLIENT_ID", idClient: id })
     dispatch({ type: "SET_CLIENT_INDEX", index: index })
   }
 }
-export function deleteModalClose() {
-  return function(dispatch) {
+
+export const deleteClient = (id) => {
+  return () => {
+    const creatorsCollection = firestore.collection("clients")
+    creatorsCollection.doc(id).delete()
+      .then(response => {})
+      .catch(error => {
+          console.log(error.message)
+      })
+  }
+}
+
+export const deleteModalClose = () => {
+  return (dispatch) => {
     dispatch({ type: "SET_DELETE_MODAL", deleteModal: false })
   }
 }
-export function editClient(id, index) {
-  return function(dispatch) {
+
+export const selectedClientToEdit = (id, index) => {
+  return (dispatch) => {
     dispatch({ type: "SET_EDIT_MODAL", editModal: true })
     dispatch({ type: "SET_CLIENT_ID", idClient: id })
     dispatch({ type: "SET_CLIENT_INDEX", index: index })
   }
 }
-export function editModalClose() {
-  return function(dispatch) {
+
+export const editClient = (id, inputName, inputValue) => {
+  return () => {
+    const creatorsCollection = firestore.collection("clients")
+    creatorsCollection.doc(id).update({
+      [inputName]: inputValue
+    })
+    .then(function() {
+      console.log("Document successfully updated!")
+    })
+    .catch(function(error) {
+      console.error("Error updating document: ", error)
+    })
+  }
+}
+
+export const editModalClose = () => {
+  return (dispatch) => {
     dispatch({ type: "SET_EDIT_MODAL", editModal: false })
   }
 }
-export function changeInputValue(name,value) {
-  return function(dispatch) {
+
+export const changeInputValue = (name,value) => {
+  return (dispatch) => {
     dispatch({ type: "SET_INPUT_NAME", inputName: name })
     dispatch({ type: "SET_INPUT_VALUE", inputValue: value })
   }
 }
-export function getFoundClient(client,index,input) {
-  return function(dispatch) {
+
+export const getFoundClient = (client,index,input) => {
+  return (dispatch) => {
     dispatch({ type: "SET_FOUND_CLIENT", foundClient: client })
     dispatch({ type: "SET_FOUND_CLIENT_INDEX", foundClientIndex: client,index })
     dispatch({ type: "SET_SEARCH_CLIENT_INPUT", searchClientInput: input })
     dispatch({ type: "SET_ALL_CLIENTS", allClients: false })
   }
 }
-export function getAllClients() {
-  return function(dispatch) {
+
+export const getAllClients = () => {
+  return (dispatch) => {
     dispatch({ type: "SET_ALL_CLIENTS", allClients: true })
   }
 }

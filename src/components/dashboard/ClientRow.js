@@ -1,14 +1,14 @@
 import React from "react"
 import { connect } from "react-redux"
-import { deleteClient, editClient } from "../../services/clientServices"
+import { selectedClientToDelete, selectedClientToEdit } from "../../services/clientServices"
 
 class ClientRow extends React.Component {
   handleDeleteClient = (id,index) => {
-    this.props.deleteClient(id, index)
+    this.props.selectedClientToDelete(id, index)
   }
 
   handleEditClient = (id,index) => {
-    this.props.editClient(id,index)
+    this.props.selectedClientToEdit(id,index)
   }
 
   render() {
@@ -31,7 +31,12 @@ class ClientRow extends React.Component {
   }
 }
 
+const mapDispatchToProps = {
+  selectedClientToDelete,
+  selectedClientToEdit
+}
+
 export default connect(
   null,
-  { deleteClient, editClient }
+  mapDispatchToProps
 )(ClientRow)

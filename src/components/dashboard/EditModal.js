@@ -1,22 +1,12 @@
 import React from "react";
 import { connect } from "react-redux"
 import { firestore } from "../Firebase.js"
-import { editModalClose } from "../../services/clientServices"
+import { editModalClose, editClient } from "../../services/clientServices"
 import FormField from "./FormField"
 
 class EditModal extends React.Component {
-
 handleEditCollection() {
-  const creatorsCollection = firestore.collection("clients")
-  creatorsCollection.doc(this.props.idClient).update({
-    [this.props.inputName]: this.props.inputValue
-  })
-  .then(function() {
-    console.log("Document successfully updated!")
-  })
-  .catch(function(error) {
-    console.error("Error updating document: ", error)
-  })
+  this.props.editClient(this.props.idClient, this.props.inputName, this.props.inputValue)
   this.props.editModalClose()
 }
 
@@ -59,7 +49,12 @@ function mapStateToProps(state) {
   }
 }
 
+const mapDispatchToProps = {
+  editModalClose,
+  editClient
+}
+
 export default connect(
   mapStateToProps,
-  { editModalClose }
+  mapDispatchToProps
 )(EditModal)

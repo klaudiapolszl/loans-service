@@ -1,17 +1,11 @@
 import React from "react";
 import { connect } from "react-redux"
 import { firestore } from "../Firebase.js"
-import { deleteModalClose } from "../../services/clientServices"
+import { deleteModalClose, deleteClient } from "../../services/clientServices"
 
 class DeleteModal extends React.Component {
-
   handleDeleteCollection() {
-    const creatorsCollection = firestore.collection("clients")
-    creatorsCollection.doc(this.props.idClient).delete()
-      .then(response => {})
-      .catch(error => {
-          console.log(error.message)
-      })
+    this.props.deleteClient(this.props.idClient)
     this.props.deleteModalClose()
   }
 
@@ -38,7 +32,12 @@ class DeleteModal extends React.Component {
   }
 };
 
+const mapDispatchToProps = {
+  deleteModalClose,
+  deleteClient
+}
+
 export default connect(
-    null,
-    { deleteModalClose }
+  null,
+  mapDispatchToProps
 )(DeleteModal)

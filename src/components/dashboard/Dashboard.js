@@ -6,7 +6,6 @@ import RedirectPage from "../RedirectPage.js"
 import Clients from "./Clients.js"
 
 class Dashboard extends React.Component {
-
   handleSignOut = () => {
     this.props.signOutUser()
     history.push("/")
@@ -26,13 +25,17 @@ class Dashboard extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     user: state.user
   }
 }
 
+const mapDispatchToProps = {
+  signOutUser
+}
+
 export default connect(
   mapStateToProps,
-  { signOutUser }
+  mapDispatchToProps
 )(Dashboard)

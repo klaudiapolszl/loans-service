@@ -1,8 +1,8 @@
 import { auth } from "../components/Firebase.js"
 import history from "../components/history"
 
-export default function getUser() {
-  return function(dispatch) {
+export const getUser = () => {
+  return (dispatch) => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         dispatch({ type: "SET_USER", user: user })
@@ -15,13 +15,15 @@ export default function getUser() {
     })
   }
 }
-export function signOutUser() {
-  return function() {
+
+export const signOutUser = () => {
+  return () => {
     auth.signOut()
   }
 }
-export function signInUser(email, password) {
-  return function() {
+
+export const signInUser = (email, password) => {
+  return () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .catch((error) =>
@@ -31,8 +33,9 @@ export function signInUser(email, password) {
     )
   }
 }
-export function signUpUser(email, password) {
-  return function() {
+
+export const signUpUser = (email, password) => {
+  return () => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .catch((error) =>

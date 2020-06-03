@@ -14,6 +14,7 @@ class FormField extends React.Component {
       repaymentDate:  ""
     }
   }
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -36,7 +37,11 @@ class FormField extends React.Component {
   }
 };
 
+const mapDispatchToProps = {
+  changeInputValue
+}
+
 export default connect(
   null,
-  { changeInputValue }
+  mapDispatchToProps
 )(FormField)

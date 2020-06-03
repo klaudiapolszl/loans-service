@@ -9,6 +9,7 @@ class ContactsFilter extends React.Component {
       searchInput: ""
     }
   }
+  
   handleChange = (e) => {
     this.setState({
       searchInput: e.target.value
@@ -48,13 +49,18 @@ class ContactsFilter extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     clients: state.clients
   }
 }
 
+const mapDispatchToProps = {
+  getFoundClient,
+  getAllClients
+}
+
 export default connect(
   mapStateToProps,
-  { getFoundClient, getAllClients }
+  mapDispatchToProps
 )(ContactsFilter)

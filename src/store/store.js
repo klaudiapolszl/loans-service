@@ -17,7 +17,7 @@ const initialState = {
 
 const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-function rootReducer(state = initialState, action) {
+const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_USER" :
         return { ...state, user: action.user }

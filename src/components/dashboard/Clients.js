@@ -7,7 +7,6 @@ import EditModal from "./EditModal"
 import ContactsFilter from "./ContactsFilter"
 
 class Clients extends React.Component {
-
   componentDidMount() {
     this.props.getClients()
   }
@@ -50,7 +49,7 @@ class Clients extends React.Component {
         }
         { (this.props.editModal && this.props.clients.length)
             ? ((this.props.foundClient)
-              ? <EditModal idClient={this.props.foundClient.id} client={ this.props.foundClient }/>
+              ? <EditModal idClient={ this.props.foundClient.id } client={ this.props.foundClient }/>
               : <EditModal idClient={ this.props.idClient } client={ this.props.clients[this.props.index] } />
             )
             : ""
@@ -60,7 +59,7 @@ class Clients extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     clients: state.clients,
     deleteModal: state.deleteModal,
@@ -73,7 +72,11 @@ function mapStateToProps(state) {
   }
 }
 
+const mapDispatchToProps = {
+  getClients
+}
+
 export default connect(
   mapStateToProps,
-  { getClients }
+  mapDispatchToProps
 )(Clients)

@@ -1,9 +1,8 @@
 import React from "react"
 import { connect } from "react-redux"
-import getUser, { signInUser, signUpUser } from "../services/userServices"
+import  { getUser, signInUser, signUpUser } from "../services/userServices"
 
 class Login extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -75,7 +74,13 @@ class Login extends React.Component {
   }
 }
 
+const mapDispatchToProps = {
+  getUser,
+  signInUser,
+  signUpUser
+}
+
 export default connect(
   null,
-  { getUser, signInUser, signUpUser }
+  mapDispatchToProps
 )(Login)
