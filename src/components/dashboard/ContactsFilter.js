@@ -17,14 +17,7 @@ class ContactsFilter extends React.Component {
   }
 
   handleFilteredClient = () => {
-    const clientSearch = this.state.searchInput.toLowerCase()
-    const tab = []
-    this.props.clients.forEach((client, index) => {
-      if(client.nameAndSurname.toLowerCase().includes(clientSearch)){
-        tab.push(client)
-      }
-      this.props.getFoundClient(tab,clientSearch)
-    })
+    this.props.getFoundClient(this.props.clients,this.state.searchInput)
   }
 
   handleAllClients = () => {

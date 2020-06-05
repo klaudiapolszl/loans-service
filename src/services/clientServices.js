@@ -77,11 +77,18 @@ export const changeInputValue = (name,value) => {
   }
 }
 
-export const getFoundClient = (client,input) => {
+export const getFoundClient = (clients,input) => {
   return (dispatch) => {
-    dispatch({ type: "SET_FOUND_CLIENTS", foundClients: client })
-    dispatch({ type: "SET_SEARCH_CLIENT_INPUT", searchClientInput: input })
-    dispatch({ type: "SET_ALL_CLIENTS", allClients: false })
+    const clientSearch = input.toLowerCase()
+    const tab = []
+    clients.forEach((client, index) => {
+      if(client.nameAndSurname.toLowerCase().includes(clientSearch)){
+        tab.push(client)
+      }
+      dispatch({ type: "SET_FOUND_CLIENTS", foundClients: tab })
+      dispatch({ type: "SET_SEARCH_CLIENT_INPUT", searchClientInput: input })
+      dispatch({ type: "SET_ALL_CLIENTS", allClients: false })
+    })
   }
 }
 
