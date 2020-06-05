@@ -30,8 +30,10 @@ class Clients extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                { (this.props.foundClient && !this.props.allClients)
-                    ? <ClientRow key={ this.props.foundClient.id } client={ this.props.foundClient } indexClient={ this.props.foundClientIndex } />
+                { (this.props.foundClients.length && !this.props.allClients)
+                    ? (this.props.foundClients.map((foundClient,index) => {
+                      return (<ClientRow key={ foundClient.id } client={ foundClient } indexClient={ index } />)
+                    }))
                     : (this.props.clients.map((client,index) => {
                       return (<ClientRow key={ client.id } client={ client } indexClient={ index } />)
                     }))
@@ -41,15 +43,15 @@ class Clients extends React.Component {
           </div>
         </section>
         { (this.props.deleteModal)
-            ? ((this.props.foundClient)
-              ? <DeleteModal idClient={this.props.foundClient.id} name={ this.props.foundClient.nameAndSurname }/>
+            ? ((this.props.foundClients.length)
+              ? <DeleteModal idClient={this.props.foundClients[this.props.foundClientIndex].id } name={ this.props.foundClients[this.props.foundClientIndex].nameAndSurname }/>
               : <DeleteModal idClient={this.props.idClient} name={ this.props.clients[this.props.index].nameAndSurname }/>
             )
             : ""
         }
         { (this.props.editModal && this.props.clients.length)
-            ? ((this.props.foundClient)
-              ? <EditModal idClient={ this.props.foundClient.id } client={ this.props.foundClient }/>
+            ? ((this.props.foundClients.length)
+              ? <EditModal idClient={ this.props.foundClients[this.props.foundClientIndex].id } client={ this.props.foundClients[this.props.foundClientIndex] }/>
               : <EditModal idClient={ this.props.idClient } client={ this.props.clients[this.props.index] } />
             )
             : ""
@@ -66,7 +68,7 @@ const mapStateToProps = (state) => {
     idClient: state.idClient,
     editModal: state.editModal,
     index: state.index,
-    foundClient: state.foundClient,
+    foundClients: state.foundClients,
     foundClientIndex: state.foundClientIndex,
     allClients: state.allClients
   }

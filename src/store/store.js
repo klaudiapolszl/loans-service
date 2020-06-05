@@ -10,7 +10,7 @@ const initialState = {
   index: "",
   inputValue: "",
   inputName: "",
-  foundClient: "",
+  foundClients: [],
   foundClientIndex: "",
   allClients: false
 }
@@ -37,8 +37,8 @@ const rootReducer = (state = initialState, action) => {
         return { ...state, inputValue: action.inputValue }
     case "SET_INPUT_NAME" :
         return { ...state, inputName: action.inputName }
-    case "SET_FOUND_CLIENT" :
-        return { ...state, foundClient: action.foundClient }
+    case "SET_FOUND_CLIENTS" :
+        return { ...state, foundClients: action.foundClients }
     case "SET_FOUND_CLIENT_INDEX" :
         return { ...state, foundClientIndex: action.foundClientIndex }
     case "SET_ALL_CLIENTS" :

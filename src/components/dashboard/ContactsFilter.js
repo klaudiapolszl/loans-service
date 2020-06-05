@@ -9,7 +9,7 @@ class ContactsFilter extends React.Component {
       searchInput: ""
     }
   }
-  
+
   handleChange = (e) => {
     this.setState({
       searchInput: e.target.value
@@ -17,13 +17,14 @@ class ContactsFilter extends React.Component {
   }
 
   handleFilteredClient = () => {
-    const clientSearch = this.state.searchInput.toLowerCase();
-
-    return this.props.clients.forEach((client, index) => {
+    const clientSearch = this.state.searchInput.toLowerCase()
+    const tab = []
+    this.props.clients.forEach((client, index) => {
       if(client.nameAndSurname.toLowerCase().includes(clientSearch)){
-        this.props.getFoundClient(client,index,clientSearch)
+        tab.push(client)
       }
-    });
+      this.props.getFoundClient(tab,clientSearch)
+    })
   }
 
   handleAllClients = () => {
@@ -33,7 +34,7 @@ class ContactsFilter extends React.Component {
   render() {
     return (
       <div className="field search__field">
-        <label className="label search__label">Search client by his name</label>
+        <label className="label search__label">Search client by his name or surname</label>
         <div className="control has-icons-left has-icons-right search__control">
           <input className="input" type="text" name="search" placeholder="Search..." onChange={ (e) => this.handleChange(e) } />
           <span className="icon is-small is-left">

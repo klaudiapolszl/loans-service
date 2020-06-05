@@ -19,6 +19,7 @@ export const selectedClientToDelete = (id,index) => {
     dispatch({ type: "SET_DELETE_MODAL", deleteModal: true })
     dispatch({ type: "SET_CLIENT_ID", idClient: id })
     dispatch({ type: "SET_CLIENT_INDEX", index: index })
+    dispatch({ type: "SET_FOUND_CLIENT_INDEX", foundClientIndex: index })
   }
 }
 
@@ -44,6 +45,7 @@ export const selectedClientToEdit = (id, index) => {
     dispatch({ type: "SET_EDIT_MODAL", editModal: true })
     dispatch({ type: "SET_CLIENT_ID", idClient: id })
     dispatch({ type: "SET_CLIENT_INDEX", index: index })
+    dispatch({ type: "SET_FOUND_CLIENT_INDEX", foundClientIndex: index })
   }
 }
 
@@ -75,10 +77,9 @@ export const changeInputValue = (name,value) => {
   }
 }
 
-export const getFoundClient = (client,index,input) => {
+export const getFoundClient = (client,input) => {
   return (dispatch) => {
-    dispatch({ type: "SET_FOUND_CLIENT", foundClient: client })
-    dispatch({ type: "SET_FOUND_CLIENT_INDEX", foundClientIndex: client,index })
+    dispatch({ type: "SET_FOUND_CLIENTS", foundClients: client })
     dispatch({ type: "SET_SEARCH_CLIENT_INPUT", searchClientInput: input })
     dispatch({ type: "SET_ALL_CLIENTS", allClients: false })
   }
